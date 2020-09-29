@@ -1,18 +1,19 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-var express = require('./config/express');
-var mongoose = require('./config/mongoose');
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000;
-const app = express();
-const db = mongoose();
+
+const mongoUri = 'mongodb+srv://panu_backend:15515511@clusterdb.1wuju.mongodb.net/TutorialDB?retryWrites=true&w=majority';
+const db = mongoose.connect(mongoUri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.get('/', (req, res) => {
-    res.send('NodeJS: Panu-API');
+    res.send('Hello World!');
 });
 
 app.post('/check', (req, res) => {
     res.json('TEST ROUTE!');
-    console.log("cs-check")
+    console.log("Hello")
 });
 
 app.listen(PORT, () => {
